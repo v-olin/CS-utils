@@ -1,7 +1,9 @@
 # Computer Science tools
 
 __Disclaimer:__
-These are poorly written, use at your own risk
+These are poorly written because I don't like Python and will probably rewrite them in another language later
+
+Use at your own risk
 
 ## Math:
   - krs.py: Solves problems using the Chinese remainder theorem and shows steps
