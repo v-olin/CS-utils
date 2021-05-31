@@ -49,11 +49,12 @@ class Statement:
         return list
 
 def ArgToList(str):
-    a = str[1:len(str)-1].split(',')
+    n = len(str)
+    a = str.split(',')
     return [int(i) for i in a]
 
 def PrintSolution(statement):
-    print("States of conditions:")
+    print("\nStates of conditions:")
     mod = 1
     tot = 0
     add = ""
@@ -65,9 +66,9 @@ def PrintSolution(statement):
         tot += cc.remainder * cc.b * cc.bigN
         print(str)
     add = add[0:(len(add))-3]
-    print("Enligt a*b*N:")
+    print("\nEnligt a*b*N:")
     modStr = '(mod {})'.format(mod)
-    print(add)
+    print("{} = {}".format(add, tot))
     print('{} {} => x = {} {}'.format(tot, modStr, tot % mod, modStr))
 
 task = Statement()
