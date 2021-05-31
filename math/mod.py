@@ -63,8 +63,7 @@ def listProd(myList):
 
 def ArgToList(str):
     n = len(str)
-    a = str[1:n-1]
-    a = a.split(',')
+    a = str.split(',')
     return [int(i) for i in a]
 
 def DeduceStatement(list):

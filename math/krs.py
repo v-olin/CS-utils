@@ -66,7 +66,7 @@ def PrintSolution(statement):
         tot += cc.remainder * cc.b * cc.bigN
         print(str)
     add = add[0:(len(add))-3]
-    print("\nEnligt a*b*N:")
+    print("\nAccording to a*b*N:")
     modStr = '(mod {})'.format(mod)
     print("{} = {}".format(add, tot))
     print('{} {} => x = {} {}'.format(tot, modStr, tot % mod, modStr))
