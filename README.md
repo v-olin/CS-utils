@@ -12,7 +12,7 @@ Use at your own risk
   ```
   x = 3 mod 4
   x = 1 mod 5
-  x = 6 mode 9
+  x = 6 mod 9
   ```
   Solve for 'x' by running the command
   ```
