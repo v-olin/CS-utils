@@ -6,6 +6,9 @@
 #include "graph.h"
 
 void graph_create(graph *g, int nodes){
-    g->nodes = (char *)calloc(nodes, sizeof(char));
-    g->links = (link *)calloc(nodes * nodes, sizeof(link));
+    g->node_count = nodes;
+    g->nodes = (node *)malloc(nodes * sizeof(node));
+    for (int i = 0; i < nodes; i++){
+        g->nodes[i].links = (link *)malloc(nodes * sizeof(link));
+    }
 }
