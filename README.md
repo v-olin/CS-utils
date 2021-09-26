@@ -7,4 +7,4 @@ Use at your own risk
 
 ## Math:
   - Chinese remainder theorem solver with steps
-  - Solves power equations using Euler's and Fermat's small theorem with steps
+  - Power equations solver using Euler's and Fermat's small theorem with steps
