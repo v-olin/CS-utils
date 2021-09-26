@@ -20,10 +20,11 @@ int main(int argc, char *argv[]){
     FILE *fptr = open_file(argv[1]);
 
     uint8_t *matrix;
-    uint8_t node_count = read_matrix(matrix, fptr);
+    uint32_t node_count = read_matrix(matrix, fptr);
 
     graph g;
     graph_create(&g, node_count);
+    graph_from_matrix(&g, (matrix + node_count));
 
     return 0;
 }
