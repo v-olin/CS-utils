@@ -14,5 +14,6 @@ graph.o: graph.c
 	$(CC) -c graph.c -o debug/graph.o $(CFLAGS)
 
 clean:
+	rm *.out
 	rm -rf debug
 	mkdir debug
