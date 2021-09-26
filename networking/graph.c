@@ -12,3 +12,7 @@ void graph_create(graph *g, int nodes){
         g->nodes[i].links = (link *)malloc(nodes * sizeof(link));
     }
 }
+
+void graph_from_matrix(graph *g, uint8_t *matrix){
+    
+}
