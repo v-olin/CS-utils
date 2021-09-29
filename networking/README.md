@@ -1,3 +1,3 @@
 # Networking tools
 
-## Dijsktra.c: Solves 
+## Dijsktra.c: Solves nothing :(
