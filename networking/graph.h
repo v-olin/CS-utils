@@ -21,7 +21,7 @@ typedef struct {
     node *nodes;
 } graph;
 
-void graph_init(graph *g, int nodes);
+void graph_create(graph *g, uint32_t nodes);
 void graph_from_matrix(graph *g, uint8_t *matrix);
 
 #endif
