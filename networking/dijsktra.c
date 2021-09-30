@@ -9,7 +9,8 @@
 #include "graph.h"
 
 FILE *open_file(char *file);
-uint8_t read_matrix(uint8_t *matrix, FILE *fptr);
+uint8_t count_nodes(FILE *fptr, char *nodes);
+uint32_t read_matrix(FILE *fptr, uint8_t *matrix);
 
 int main(int argc, char *argv[]){
     // check for correct amount of arguments
@@ -21,15 +22,19 @@ int main(int argc, char *argv[]){
     // open file
     FILE *fptr = open_file(argv[1]);
 
+    char *nodes = (char *)malloc(26 * sizeof(char));
+    uint8_t node_count = count_nodes(fptr, nodes);
     // create and read matrix
-    uint8_t *matrix;
-    uint32_t node_count = read_matrix(matrix, fptr);
+    uint8_t *matrix = (uint8_t *)malloc(node_count * node_count * sizeof(uint8_t));
+    uint32_t matrix_size = read_matrix(fptr, matrix);
+
+    fclose(fptr);
 
     // create and malloc space for graph
     graph g;
     graph_create(&g, node_count);
     // read matrix to graph
-    graph_from_matrix(&g, matrix);
+    graph_from_matrix(&g, nodes, matrix, matrix_size);
 
     return 0;
 }
@@ -47,40 +52,33 @@ FILE *open_file(char *file){
     return fptr;
 }
 
-uint8_t read_matrix(uint8_t *matrix, FILE *fptr){
-    char c; // tmp
-    bool begin_matrix = false; // useless??
-    uint8_t node_count = 0; // count nodes in graph
-    char *nodes = (char *)calloc(26, sizeof(char)); // store nodes
-
-    // while c isn't newline, read nodes
-    while(1){
+uint8_t count_nodes(FILE *fptr, char *nodes){
+    char c;
+    bool begin_count = false;
+    uint8_t node_index = 0;
+    while (1){
         c = fgetc(fptr);
-        if (begin_matrix == false){
+        if (begin_count == false){
             if (c == 'N')
-                begin_matrix = true;
+                begin_count = true;
         }
         else {
             if (c == '\n')
                 break;
-            else if (c != ';' && c != 'N')
-                nodes[node_count++] = c;
+            else if (c != ';')
+                nodes[node_index++] = c;
         }
     }
-    nodes[node_count] = '\0';
+    nodes[node_index] = '\0';
 
-    // malloc space for matrix
-    matrix = (uint8_t *)malloc((node_count * (node_count + 1)) * sizeof(uint8_t));
+    printf("Nodes found:\t%ld\n", strlen(nodes));
 
+    return strlen(nodes);
+}
+
+uint32_t read_matrix(FILE *fptr, uint8_t *matrix){
+    char c;
     uint32_t i = 0;
-
-    for (i = 0; i < strlen(nodes); i++){
-        matrix[i] = nodes[i];
-    }
-
-    // nodes now stored in matrix
-    free(nodes);
-
     while(1){
         c = fgetc(fptr);
         if (feof(fptr))
@@ -95,8 +93,6 @@ uint8_t read_matrix(uint8_t *matrix, FILE *fptr){
             // printf("Val: %u\n", matrix[i - 1]);
         }
     }
-
-    fclose(fptr);
-    return node_count;
+    return i;
 }
 
