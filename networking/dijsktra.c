@@ -11,30 +11,26 @@
 FILE *open_file(char *file);
 uint8_t count_nodes(FILE *fptr, char *nodes);
 uint32_t read_matrix(FILE *fptr, uint8_t *matrix);
+void setup_graph(graph *g, char *nodes, uint8_t *matrix);
 
 int main(int argc, char *argv[]){
-    // check for correct amount of arguments
     if (argc != 2){
         printf("ERROR: Too few arguments");
         exit(-1);
     }
     
-    // open file
     FILE *fptr = open_file(argv[1]);
 
     char *nodes = (char *)malloc(26 * sizeof(char));
-    uint8_t node_count = count_nodes(fptr, nodes);
-    // create and read matrix
-    uint8_t *matrix = (uint8_t *)malloc(node_count * node_count * sizeof(uint8_t));
-    uint32_t matrix_size = read_matrix(fptr, matrix);
+    count_nodes(fptr, nodes);
+    
+    uint8_t *matrix = (uint8_t *)malloc(strlen(nodes) * strlen(nodes) * sizeof(uint8_t));
+    read_matrix(fptr, matrix);
 
     fclose(fptr);
 
-    // create and malloc space for graph
     graph g;
-    graph_create(&g, node_count);
-    // read matrix to graph
-    graph_from_matrix(&g, nodes, matrix, matrix_size);
+    setup_graph(&g, nodes, matrix);
 
     return 0;
 }
@@ -96,3 +92,7 @@ uint32_t read_matrix(FILE *fptr, uint8_t *matrix){
     return i;
 }
 
+void setup_graph(graph *g, char *nodes, uint8_t *matrix){
+    graph_create(g, nodes);
+    graph_from_matrix(g, matrix);
+}

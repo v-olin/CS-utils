@@ -8,30 +8,25 @@
 #include "graph.h"
 
 // malloc memory for graph with 'nodes' amount of nodes
-void graph_create(graph *g, uint32_t nodes){
-    g->node_count = nodes;
-    g->nodes = (node *)malloc(nodes * sizeof(node));
-    for (int i = 0; i < nodes; i++){
-        g->nodes[i].links = (link *)malloc(nodes * sizeof(link));
+void graph_create(graph *g, char *nodes){
+    g->node_count = strlen(nodes);
+    g->nodes = (node *)malloc(g->node_count * sizeof(node));
+    for (int i = 0; i < g->node_count; i++){
+        g->nodes[i].name = nodes[i];
+        g->nodes[i].links = (link *)malloc(g->node_count * sizeof(link));
     }
 }
 
 // read matrix to graph data
-void graph_from_matrix(graph *g, char *nodes, uint8_t *matrix, uint32_t matrix_size){
-    uint32_t i, j = 0;
-    for (i = 0; i < g->node_count; i++){
-        g->nodes[i].name = nodes[i];
-        printf("Added node:\t%c\n", g->nodes[i]);
-    }
-
-    link l;
+void graph_from_matrix(graph *g, uint8_t *matrix){
+    uint32_t i, n, m, matrix_size = g->node_count * g->node_count;
     for (i = 0; i < matrix_size; i++){
+        n = i / g->node_count;
+        m = i % g->node_count;
         // these lines are awful
-        g->nodes[i / g->node_count].links[i % g->node_count].dst = nodes[i % g->node_count];
-        g->nodes[i / g->node_count].links[i % g->node_count].cost = matrix[i];
+        g->nodes[n].links[m].dst = g->nodes[m].name;
+        g->nodes[n].links[m].cost = matrix[i];
 
-        printf("%c -> %c:\t%u\n", 
-            g->nodes[i / g->node_count].name, g->nodes[i % g->node_count].name,
-            g->nodes[i / g->node_count].links[i % g->node_count].cost);
+        printf("%c -> %c:\t%u\n", g->nodes[n].name, g->nodes[m].name, g->nodes[n].links[m].cost);
     }
 }
