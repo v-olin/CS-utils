@@ -23,7 +23,7 @@ void graph_from_matrix(graph *g, uint8_t *matrix){
     for (i = 0; i < matrix_size; i++){
         n = i / g->node_count;
         m = i % g->node_count;
-        // these lines are awful
+        
         g->nodes[n].links[m].dst = g->nodes[m].name;
         g->nodes[n].links[m].cost = matrix[i];
 

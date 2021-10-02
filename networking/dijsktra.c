@@ -82,11 +82,9 @@ uint32_t read_matrix(FILE *fptr, uint8_t *matrix){
 
         if (c == '-'){
             matrix[i++] = INFINITY;
-            // printf("Val: %u\n", matrix[i - 1]);
         }
         else if (c >= '0' && c <= '9'){
             matrix[i++] = (uint8_t)(c - 48);
-            // printf("Val: %u\n", matrix[i - 1]);
         }
     }
     return i;
