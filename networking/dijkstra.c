@@ -29,22 +29,17 @@ int main(int argc, char *argv[]){
 
     fclose(fptr);
 
-    // graph g;
-    // setup_graph(&g, nodes, matrix);
-
     return 0;
 }
 
 FILE *open_file(char *file){
     FILE *fptr;
 
-    // try to open file
     if ((fptr = fopen(file, "r")) == NULL){
         printf("ERROR: Couldn't open file %s", file);
         exit(1);
     }
 
-    // return file pointer
     return fptr;
 }
 
@@ -89,8 +84,3 @@ uint32_t read_matrix(FILE *fptr, uint8_t *matrix){
     }
     return i;
 }
-
-// void setup_graph(graph *g, char *nodes, uint8_t *matrix){
-//     graph_create(g, nodes);
-//     graph_from_matrix(g, matrix);
-// }
