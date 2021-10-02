@@ -2,13 +2,13 @@
 CC=gcc
 CFLAGS=-Wall -Wpedantic -Wextra -g
 
-build: clean build-dijsktra
+build: clean build-dijkstra
 
-build-dijsktra: dijsktra.o graph.o
-	$(CC) debug/dijsktra.o debug/graph.o $(CFLAGS)
+build-dijkstra: dijkstra.o graph.o
+	$(CC) debug/dijkstra.o debug/graph.o $(CFLAGS)
 
-dijsktra.o: dijsktra.c
-	$(CC) -c dijsktra.c -o debug/dijsktra.o $(CFLAGS)
+dijkstra.o: dijkstra.c
+	$(CC) -c dijkstra.c -o debug/dijkstra.o $(CFLAGS)
 
 graph.o: graph.c
 	$(CC) -c graph.c -o debug/graph.o $(CFLAGS)
