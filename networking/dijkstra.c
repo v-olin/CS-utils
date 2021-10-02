@@ -11,7 +11,7 @@
 FILE *open_file(char *file);
 uint8_t count_nodes(FILE *fptr, char *nodes);
 uint32_t read_matrix(FILE *fptr, uint8_t *matrix);
-void setup_graph(graph *g, char *nodes, uint8_t *matrix);
+// void setup_graph(graph *g, char *nodes, uint8_t *matrix);
 
 int main(int argc, char *argv[]){
     if (argc != 2){
@@ -29,8 +29,8 @@ int main(int argc, char *argv[]){
 
     fclose(fptr);
 
-    graph g;
-    setup_graph(&g, nodes, matrix);
+    // graph g;
+    // setup_graph(&g, nodes, matrix);
 
     return 0;
 }
@@ -90,7 +90,7 @@ uint32_t read_matrix(FILE *fptr, uint8_t *matrix){
     return i;
 }
 
-void setup_graph(graph *g, char *nodes, uint8_t *matrix){
-    graph_create(g, nodes);
-    graph_from_matrix(g, matrix);
-}
+// void setup_graph(graph *g, char *nodes, uint8_t *matrix){
+//     graph_create(g, nodes);
+//     graph_from_matrix(g, matrix);
+// }
