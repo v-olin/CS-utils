@@ -1,3 +1,3 @@
 # Networking tools
 
-## Dijsktra.c: Solves nothing :(
+## Dijkstra.c: Solves nothing :(
