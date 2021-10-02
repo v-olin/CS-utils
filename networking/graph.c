@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 #include "graph.h"
 
+/* Old implementation
 // malloc memory for graph with 'nodes' amount of nodes
 void graph_create(graph *g, char *nodes){
     g->node_count = strlen(nodes);
@@ -23,10 +25,16 @@ void graph_from_matrix(graph *g, uint8_t *matrix){
     for (i = 0; i < matrix_size; i++){
         n = i / g->node_count;
         m = i % g->node_count;
-        
+
         g->nodes[n].links[m].dst = g->nodes[m].name;
         g->nodes[n].links[m].cost = matrix[i];
 
         printf("%c -> %c:\t%u\n", g->nodes[n].name, g->nodes[m].name, g->nodes[n].links[m].cost);
     }
 }
+
+void solve_graph(graph *g){
+    uint8_t *dist = (uint8_t *)malloc((g->node_count - 1) * )
+}
+*/
+
